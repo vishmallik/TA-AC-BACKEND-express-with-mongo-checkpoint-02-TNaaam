@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+
+        <%- include('partials/header') -%>
+            <main class="bg-2 container-s">
+                <form class="form-control" action="/events/<%=event._id%>" method="post"
+                    class="flex padding-4 flex-col">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" placeholder="Event Title" name="title" value="<%=event.title%>">
+                    <label for="summary">Summary</label>
+                    <textarea id="summary" name="summary" id="" cols="30" rows="7"
+                        placeholder="Summary"><%=event.summary%></textarea>
+                    <label for="host">Host</label>
+                    <input id="host" type="text" placeholder="Host" name="host" value="<%=event.host%>">
+                    <div class="flex parent sm-wrap">
+                        <div class="flex-48 ">
+                            <label for="start">Start Date</label>
+                            <input id="start" type="date" placeholder="Start date" name="start_date"
+                                value="<%=start_date%>">
+                        </div>
+                        <div class="flex-48">
+                            <label for="end">End Date</label>
+                            <input id="end" type="date" placeholder="End date" name="end_date" value="<%=end_date%>">
+                        </div>
+                    </div>
+                    <label for="category">Category</label>
+                    <input id="category" type="text" placeholder="Category" name="category" value="<%=event.category%>">
+                    <label for="location">Location</label>
+                    <input id="location" type="text" placeholder="Location" name="location" value="<%=event.location%>">
+                    <input type="submit" value="Submit Event">
+                </form>
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>
