@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+
+        <%- include('partials/header') -%>
+            <main class="bg-2 container-s">
+                <form action="/remarks/<%=remark._id%>" method="post" class="flex flex-col form-control form-remark">
+                    <input type="text" placeholder="Author" name="author" value="<%=remark.author%>">
+                    <textarea name="title" cols="10" rows="7" placeholder="Title"><%=remark.title%></textarea>
+                    <input type="submit" value="Submit Remark">
+                </form>
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>

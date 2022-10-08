@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+        <%- include('partials/header') -%>
+            <main class="container-l flex">
+                <section class="eventlist">
+                    <h2>All Upcoming Events</h2>
+                    <% eventsList.forEach(event=>{%>
+                        <div class="event-wrapper">
+                            <h4>
+                                <%=event.title%>
+                            </h4>
+                            <p class="date">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <%=String(event.start_date).slice(0,15)%>
+                            </p>
+                            <div>
+                                <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                    class="svg-inline--fa fa-grid-2 fa-lg">
+                                    <path fill="currentColor"
+                                        d="M192 80c0-26.5-21.5-48-48-48H48C21.5 32 0 53.5 0 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80zm0 256c0-26.5-21.5-48-48-48H48c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336zM256 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H304c-26.5 0-48 21.5-48 48zM448 336c0-26.5-21.5-48-48-48H304c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336z"
+                                        class=""></path>
+                                </svg>
+                                <p class="category">
+                                    <% event.category.forEach(category=>{%>
+
+                                        <%=lodash.capitalize(category)%>,
+                                            <%})%>
+                                </p>
+                            </div>
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <%=event.location%>
+                            </p>
+                            <a href="/events/<%=event._id%>"> <i class="fa-solid fa-circle-info"></i> More
+                                Details...</a>
+
+                        </div>
+
+
+                        <%})%>
+                </section>
+                <section class="sidebar">
+                    <article>
+                        <h4>Filter by Categories</h4>
+                        <%uniqueCategory.forEach(category=>{%>
+                            <li> <a href="/events/category/<%=category%>">
+                                    <%=lodash.capitalize(category)%>
+                                </a></li>
+                            <%})%>
+                    </article>
+                    <article>
+                        <h4>Filter by date</h4>
+                        <li><a href="/events/latest">By latest upcoming event</a></li>
+                        <li><a href="/events/oldest">By oldest upcoming event</a></li>
+                    </article>
+                    <article>
+                        <h4>Filter by location</h4>
+                        <% locationArr.forEach(location=>{%>
+                            <li><a href="/events/location/<%=location%>">
+                                    <%=lodash.capitalize(location)%>
+                                </a></li>
+                            <%})%>
+                    </article>
+
+                </section>
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>

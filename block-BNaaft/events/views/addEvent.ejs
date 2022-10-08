@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+
+        <%- include('partials/header') -%>
+            <main class="bg-2 container-s">
+                <form class="form-control" action="/events" method="post" class="flex padding-4 flex-col">
+                    <label for="title">Title</label>
+                    <input id="title" type="text" placeholder="Event Title" name="title">
+                    <label for="summary">Summary</label>
+                    <textarea id="summary" name="summary" id="" cols="30" rows="7" placeholder="Summary"></textarea>
+                    <label for="host">Host</label>
+                    <input id="host" type="text" placeholder="Host" name="host">
+                    <div class="flex parent sm-wrap">
+                        <div class="flex-48 ">
+                            <label for="start">Start Date</label>
+                            <input id="start" type="date" placeholder="Start date" name="start_date">
+                        </div>
+                        <div class="flex-48">
+                            <label for="end">End Date</label>
+                            <input id="end" type="date" placeholder="End date" name="end_date">
+                        </div>
+                    </div>
+                    <label for="category">Category</label>
+                    <input id="category" type="text" placeholder="Category" name="category">
+                    <label for="location">Location</label>
+                    <input id="location" type="text" placeholder="Location" name="location">
+                    <input type="submit" value="Create New Event">
+                </form>
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>

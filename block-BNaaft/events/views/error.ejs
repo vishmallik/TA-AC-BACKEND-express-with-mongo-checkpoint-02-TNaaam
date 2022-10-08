@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+        <%- include('partials/header') -%>
+            <main class="container-l error">
+                <h2>Error <%=error.status %>
+                </h2>
+                <p> <strong>Error Message:</strong>
+
+                    <%=message %>
+                </p>
+                <p><strong>Error Status:</strong>
+                    <%=error.status %>
+                </p>
+                <p><strong>Error Stack:</strong>
+                    <%= error.stack %>
+                        <p />
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>
