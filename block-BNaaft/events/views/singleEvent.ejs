@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/head') -%>
+
+    <body class="bg-2">
+        <%- include('partials/header') -%>
+            <main class="container-xl flex">
+                <section class="eventlist">
+                    <h2>Event Details</h2>
+
+                    <div class="event-wrapper single-event">
+                        <h4>
+                            <%=event.title%>
+                        </h4>
+                        <p>
+                            <i class="fa-solid fa-microphone"></i>
+                            <%=event.host%>
+                        </p>
+                        <p class="date">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <%=String(event.start_date).slice(0,15)%>
+                        </p>
+                        <p>
+                            <i class="fa-solid fa-calendar-xmark"></i>
+                            <%=String(event.end_date).slice(0,15)%>
+                        </p>
+                        <div>
+                            <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+                                class="svg-inline--fa fa-grid-2 fa-lg">
+                                <path fill="currentColor"
+                                    d="M192 80c0-26.5-21.5-48-48-48H48C21.5 32 0 53.5 0 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80zm0 256c0-26.5-21.5-48-48-48H48c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336zM256 80v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48H304c-26.5 0-48 21.5-48 48zM448 336c0-26.5-21.5-48-48-48H304c-26.5 0-48 21.5-48 48v96c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48V336z"
+                                    class=""></path>
+                            </svg>
+                            <p class="category">
+                                <% event.category.forEach(category=>{%>
+                                    <a href="/events/category/<%=category%>">
+                                        <%=lodash.capitalize(category)%>
+                                    </a>,
+                                    <%})%>
+                            </p>
+                        </div>
+                        <p>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <%=event.location%>
+                        </p>
+                        <p class="flex">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span class="summary">
+                                <%=event.summary%>
+                            </span>
+                        </p>
+
+
+                        <p>
+                            <i class="fa-solid fa-heart"></i>
+                            <%=event.likes%>
+                        </p>
+                        <div class="like">
+                            <a href="/events/<%=event._id%>/like"><i class="fa-solid fa-thumbs-up"></i></a>
+                            <a href="/events/<%=event._id%>/dislike"><i class="fa-solid fa-thumbs-down"></i></a>
+                        </div>
+                        <div class="edit">
+                            <a href="/events/<%=event._id%>/edit">Edit</a>
+                            <a href="/events/<%=event._id%>/delete">Delete</a>
+                        </div>
+
+                    </div>
+                </section>
+                <section class="sidebar remark-sidebar">
+                    <h4>Add a Remark</h4>
+                    <form action="/events/<%=event._id%>/remark" method="post"
+                        class="flex flex-col form-control form-remark">
+                        <input id="host" type="text" placeholder="Author" name="author">
+                        <textarea name="title" cols="10" rows="7    " placeholder="Title"></textarea>
+
+                        <input type="submit" value="Submit Remark">
+                    </form>
+                    <h4>Remarks</h4>
+                    <hr>
+                    <% event.remarks.forEach((remark)=>{%>
+                        <div class="remark">
+
+                            <p>
+                                <strong>
+                                    <%=remark.author%>
+                                </strong> wrote:
+                            </p>
+                            <p class="remark-title">
+                                <%=remark.title%>
+                            </p>
+
+                            <p>
+                                <strong>
+                                    Likes:
+                                </strong>
+                                <%=remark.likes%>
+                            </p>
+                            <div class=" remark-like">
+                                <a href="/remarks/<%=remark._id%>/like"><i class="fa-solid fa-thumbs-up"></i></a>
+                                <a href="/remarks/<%=remark._id%>/dislike"><i class="fa-solid fa-thumbs-down"></i></a>
+                            </div>
+                            <div class=" remark-edit">
+                                <a href="/remarks/<%=remark._id%>">Edit</a>
+                                <a href="/remarks/<%=remark._id%>/delete">Delete</a>
+                            </div>
+                        </div>
+                        <%})%>
+
+                </section>
+            </main>
+            <%- include('partials/footer') -%>
+    </body>
+
+</html>
